@@ -7,6 +7,7 @@ class student {
 public:
 	
 
+
 	string getStudentId() const; // accessor
 
 	string getStudentFirstName() const;
@@ -31,14 +32,18 @@ public:
 
 	void setStudentAge(int age);
 
-	void setStudentDaysInCourse(string daysInCourse);
+	void setStudentDaysInCourse(string dInCourse[]);
 
 	void setDegreeProgram(DegreeProgram degreeProgram);
 
+	void print() const;
+
 	void print();
 
-	student(string studentId, string firstName, string lastName, string email, int age/*, string daysInCourse, DegreeProgram degreeProgram*/);
-
+	student(string studentId, string firstName, string lastName, string email, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram);
+	
+	~student();
+	
 	
 private:
 	
@@ -52,7 +57,7 @@ private:
 
 	int age;
 
-	string daysInCourse;
+	int daysInCourse[3];
 
 	DegreeProgram degreeProgram;
 

@@ -1,17 +1,24 @@
 #include <iostream>
 using namespace std;
 #include "student.h"
-
+#include <sstream>
+#include "degree.h"
+#include "roster.h"
 // constructor
-student::student(string studentId, string firstName, string lastName, string email, int age /*, string daysInCourse, DegreeProgram degreeProgram*/) {
+student::student(string studentId, string firstName, string lastName, string email, int age ,int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram) {
 	this->studentId = studentId;
 	this->firstName = firstName;
 	this->lastName = lastName;
 	this->email = email;
 	this->age = age;
-	//this->daysInCourse = daysInCourse;
-	//this->degreeProgram = degreeProgram;
-
+	this->daysInCourse[0] = daysInCourse1;
+	this->daysInCourse[1] = daysInCourse2;
+	this->daysInCourse[2] = daysInCourse3;
+	this->degreeProgram = degreeProgram;
+	setStudentId(this->studentId);
+}
+student::~student()
+{
 }
 string student::getStudentId() const {
 	return studentId;
@@ -34,7 +41,14 @@ int student::getStudentAge() const {
 
 }
 string student::getStudentDaysInCourse() const {
-	return daysInCourse;
+	string strDaysInCourse;
+	for (int i = 0; i <= 2; i++) {
+		strDaysInCourse += daysInCourse[i];
+		if (i < 2) {
+			strDaysInCourse += ", ";
+		}
+	}
+	return strDaysInCourse;
 
 }
 DegreeProgram student::getStudentDegreeProgram() const {
@@ -63,8 +77,12 @@ void student::setStudentAge(int age) {
 
 }
 
-void student::setStudentDaysInCourse(string daysInCourse) {
-	this->daysInCourse = daysInCourse;
+void student::setStudentDaysInCourse(string dInCourse[]) {
+	for (int i = 0; i <= 2; i++) {
+		
+		daysInCourse[i] = stoi(dInCourse[i]);
+
+	}
 }
 
 void student::setDegreeProgram(DegreeProgram degreeProgram) {
@@ -74,5 +92,6 @@ void student::setDegreeProgram(DegreeProgram degreeProgram) {
 
 
 void student::print() {
-	cout << getStudentId() << " | " << getStudentFirstName() << " | " << getStudentLastName << " | " << getStudentEmail << " | " << endl; //<< getStudentDaysInCourse << " | " << getStudentDegreeProgram << endl;
+	
+	cout << getStudentId() << endl; // << getStudentFirstName() << getStudentLastName() << getStudentEmail() << getStudentAge() << endl; //<< getStudentDaysInCourse << " | " << getStudentDegreeProgram << endl;
 }
